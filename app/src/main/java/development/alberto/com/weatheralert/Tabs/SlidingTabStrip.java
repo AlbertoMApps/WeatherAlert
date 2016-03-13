@@ -1,4 +1,4 @@
-package development.alberto.com.weatheralert;
+package development.alberto.com.weatheralert.Tabs;
 
 /**
  * Created by alber

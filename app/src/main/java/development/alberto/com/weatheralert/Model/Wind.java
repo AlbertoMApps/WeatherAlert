@@ -1,10 +1,13 @@
 
 package development.alberto.com.weatheralert.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Wind {
+public class Wind implements Parcelable{
 
     @SerializedName("speed")
     @Expose
@@ -12,6 +15,21 @@ public class Wind {
     @SerializedName("deg")
     @Expose
     private Double deg;
+
+    protected Wind(Parcel in) {
+    }
+
+    public static final Creator<Wind> CREATOR = new Creator<Wind>() {
+        @Override
+        public Wind createFromParcel(Parcel in) {
+            return new Wind(in);
+        }
+
+        @Override
+        public Wind[] newArray(int size) {
+            return new Wind[size];
+        }
+    };
 
     /**
      * 
@@ -49,4 +67,12 @@ public class Wind {
         this.deg = deg;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+    }
 }

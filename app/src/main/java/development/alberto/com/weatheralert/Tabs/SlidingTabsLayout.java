@@ -1,4 +1,4 @@
-package development.alberto.com.weatheralert;
+package development.alberto.com.weatheralert.Tabs;
 
 import android.content.Context;
 import android.graphics.Typeface;

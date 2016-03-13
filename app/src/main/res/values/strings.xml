@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">WeatherAlert</string>
+    <string name="default_saved_city_text">London</string>
+    <string name="default_saved_speed">25mps</string>
+    <string name="default_saved_degree">32C</string>
+    <string name="search">Search by city name:</string>
+    <string name="textShow">Enter your city name:</string>
+    <string name="add_data_button">Add data</string>
     <string-array name="tabs">
         <item>INFORMATION DISPLAYED</item>
         <item>INFORMATION STORAGED</item>

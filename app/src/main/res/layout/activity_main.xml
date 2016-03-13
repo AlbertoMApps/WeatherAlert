@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,51 +7,61 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="Enter your city name: "/>
-    <android.support.v7.widget.AppCompatEditText
+        android:text="@string/textShow"
+         />
+    <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_below="@+id/view"/>
     <Button
         android:id="@+id/btnSearch"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Search by city name: "/>
-    <TextView
-        android:id="@+id/speed"
+        android:text="@string/search"
+        android:layout_below="@+id/editText"/>
+
+    <fragment
+        android:id="@+id/fragment2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" /><!--Retrofit try-->
-
-    <development.alberto.com.weatheralert.SlidingTabsLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </development.alberto.com.weatheralert.SlidingTabsLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v4.view.ViewPager>
-</LinearLayout>
-
-<!--    <TextView
-        android:id="@+id/speed"
+        android:layout_gravity="right"
+        android:name="development.alberto.com.weatheralert.UI.MyFragmentData"
+        tools:layout="@layout/fragment2_layout"
+        android:layout_below="@+id/btnSearch"
+        android:layout_toRightOf="@+id/fragment1"
+        />
+    <fragment
+        android:id="@+id/fragment1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-    <TextView
-        android:id="@+id/degrees"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/speed"
-        android:text="Hello World!" />
-        -->
+        android:layout_gravity="left"
+        android:name="development.alberto.com.weatheralert.UI.MyFragment"
+        tools:layout="@layout/fragment_layout"
+        android:layout_below="@+id/btnSearch"
+        />
+
+
+    <!-- <development.alberto.com.weatheralert.Tabs.SlidingTabsLayout
+         android:id="@+id/tabs"
+         android:layout_width="match_parent"
+         android:layout_height="fill_parent">
+
+     </development.alberto.com.weatheralert.Tabs.SlidingTabsLayout>
+
+     <android.support.v4.view.ViewPager
+         android:id="@+id/pager"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+     </android.support.v4.view.ViewPager>-->
+</RelativeLayout>
 
