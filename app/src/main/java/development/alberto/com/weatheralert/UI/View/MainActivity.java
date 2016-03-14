@@ -119,12 +119,13 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
         MyFragmentData fragment2= getFragment2();
         fragment2.infoReceived(weatherModel);
     }
-
+    @Override
     public MyFragment getFragment1(){
         android.app.FragmentManager fragmentManager = getFragmentManager();
         MyFragment fragment1=(MyFragment) fragmentManager.findFragmentById(R.id.fragment1);
         return fragment1;
     }
+    @Override
     public MyFragmentData getFragment2(){
         android.app.FragmentManager fragmentManager = getFragmentManager();
         MyFragmentData fragment2=(MyFragmentData) fragmentManager.findFragmentById(R.id.fragment2);

@@ -37,5 +37,14 @@ public class TextEnteredTest {
         verify(view).showUserNameError(R.string.login_user_name_error);
     }
 
+    @Test
+     public void getFragment1()throws Exception {
+        presenter.getFragment1();
+    }
+    @Test
+    public void getFragment2()throws Exception {
+        presenter.getFragment2();
+    }
+
 
 }
