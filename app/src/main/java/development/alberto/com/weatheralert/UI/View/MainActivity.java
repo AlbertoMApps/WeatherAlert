@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
     //private RestAdapter mRestAdapt;
     @Inject RestAdapter restAdapter;
     //private Realm realm;
-    @Inject Realm realm;
+   // @Inject Realm realm;
     private RealmConfiguration realmConfiguration;
     @Bind(R.id.editText) EditText textEntered;
     private ProgressDialog progressDialog;
