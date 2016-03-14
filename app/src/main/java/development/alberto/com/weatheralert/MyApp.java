@@ -2,7 +2,9 @@ package development.alberto.com.weatheralert;
 
 import android.app.Application;
 
+import development.alberto.com.weatheralert.di.Components.DaggerNetComponent;
 import development.alberto.com.weatheralert.di.Components.NetComponent;
+import development.alberto.com.weatheralert.di.Modules.AppModule;
 import development.alberto.com.weatheralert.di.Modules.NetModule;
 
 public class MyApp extends Application {
@@ -11,10 +13,11 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-//        mNetComponent = DaggerNetComponent
-//                .builder()
-//                .netModule(new NetModule())
-//                .build();
+        mNetComponent = DaggerNetComponent
+                .builder()
+                .appModule(new AppModule(this))
+                .netModule(new NetModule())
+                .build();
     }
 
 

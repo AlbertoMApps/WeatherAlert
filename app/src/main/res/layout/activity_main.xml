@@ -51,12 +51,12 @@
         />
 
 
-    <!-- <development.alberto.com.weatheralert.Tabs.SlidingTabsLayout
+    <!-- <development.alberto.com.weatheralert.UI.Tabs.SlidingTabsLayout
          android:id="@+id/tabs"
          android:layout_width="match_parent"
          android:layout_height="fill_parent">
 
-     </development.alberto.com.weatheralert.Tabs.SlidingTabsLayout>
+     </development.alberto.com.weatheralert.UI.Tabs.SlidingTabsLayout>
 
      <android.support.v4.view.ViewPager
          android:id="@+id/pager"

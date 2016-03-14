@@ -14,16 +14,13 @@ import retrofit.RestAdapter;
 @Module
 public class NetModule {
 
-    private RestAdapter restAdapt;
-    private Realm mRealm;
-
     @Provides
     @Singleton
     Realm provideRealm() {
         Log.i("Realm", "provideRealm");
 
         //realm instance
-        return mRealm = Realm.getDefaultInstance();
+        return Realm.getDefaultInstance();
     }
 
 
@@ -33,10 +30,10 @@ public class NetModule {
         Log.i("Retrofit", "provideRetrofit");
 
         //restAdapt
-        restAdapt = new RestAdapter.Builder()
+        return new RestAdapter.Builder()
                 .setEndpoint(Constant.BASE_URL)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
-        return restAdapt;
+
     }
 }

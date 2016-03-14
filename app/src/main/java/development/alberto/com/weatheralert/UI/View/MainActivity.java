@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
         });
     }
 
-    @Override
+    @Override //send the data to the Fragment2
     public void sendData(WeatherInfo weatherModel) {
         MyFragmentData fragment2= getFragment2();
         fragment2.infoReceived(weatherModel);
