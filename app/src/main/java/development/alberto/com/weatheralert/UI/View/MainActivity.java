@@ -1,19 +1,12 @@
-package development.alberto.com.weatheralert.UI;
+package development.alberto.com.weatheralert.UI.View;
 
 import android.app.ProgressDialog;
-import android.content.res.Resources;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,16 +14,12 @@ import butterknife.OnClick;
 import development.alberto.com.weatheralert.Api.InterfaceDataSent;
 import development.alberto.com.weatheralert.Api.WeatherApi;
 import development.alberto.com.weatheralert.Constants.Constant;
-import development.alberto.com.weatheralert.DataModel.SavedWeatherData;
-import development.alberto.com.weatheralert.Model.Weather;
-import development.alberto.com.weatheralert.Model.WeatherInfo;
+import development.alberto.com.weatheralert.Models.Model.WeatherInfo;
 import development.alberto.com.weatheralert.R;
-import development.alberto.com.weatheralert.Tabs.SlidingTabsLayout;
 import development.alberto.com.weatheralert.UI.Presenter.MainPresenter;
 import development.alberto.com.weatheralert.UI.Presenter.MainView;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.exceptions.RealmMigrationNeededException;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;

@@ -12,9 +12,9 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import development.alberto.com.weatheralert.Model.WeatherInfo;
+import development.alberto.com.weatheralert.Models.Model.WeatherInfo;
 import development.alberto.com.weatheralert.R;
-import development.alberto.com.weatheralert.DataModel.SavedWeatherData;
+import development.alberto.com.weatheralert.Models.DataModel.SavedWeatherData;
 
 /**
  * Created by alber on 11/03/2016.

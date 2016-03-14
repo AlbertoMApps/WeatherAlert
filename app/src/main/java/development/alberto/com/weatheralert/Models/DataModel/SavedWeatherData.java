@@ -1,4 +1,4 @@
-package development.alberto.com.weatheralert.DataModel;
+package development.alberto.com.weatheralert.Models.DataModel;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:name="development.alberto.com.weatheralert.UI.MyFragmentData"
+        android:name="development.alberto.com.weatheralert.UI.View.MyFragmentData"
         tools:layout="@layout/fragment2_layout"
         android:layout_below="@+id/btnSearch"
         android:layout_toRightOf="@+id/fragment1"
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:name="development.alberto.com.weatheralert.UI.MyFragment"
+        android:name="development.alberto.com.weatheralert.UI.View.MyFragment"
         tools:layout="@layout/fragment_layout"
         android:layout_below="@+id/btnSearch"
         />

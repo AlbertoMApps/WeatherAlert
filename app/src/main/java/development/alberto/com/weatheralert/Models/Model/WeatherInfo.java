@@ -1,5 +1,5 @@
 
-package development.alberto.com.weatheralert.Model;
+package development.alberto.com.weatheralert.Models.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,4 +1,4 @@
-package development.alberto.com.weatheralert.UI;
+package development.alberto.com.weatheralert.UI.View;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import development.alberto.com.weatheralert.Adapter.Fragment2Adapter;
-import development.alberto.com.weatheralert.DataModel.SavedWeatherData;
-import development.alberto.com.weatheralert.Model.WeatherInfo;
+import development.alberto.com.weatheralert.Models.DataModel.SavedWeatherData;
+import development.alberto.com.weatheralert.Models.Model.WeatherInfo;
 import development.alberto.com.weatheralert.R;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;

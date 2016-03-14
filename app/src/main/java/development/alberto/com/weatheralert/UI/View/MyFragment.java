@@ -1,4 +1,4 @@
-package development.alberto.com.weatheralert.UI;
+package development.alberto.com.weatheralert.UI.View;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -10,9 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import development.alberto.com.weatheralert.Api.InterfaceDataSent;
-import development.alberto.com.weatheralert.Model.WeatherInfo;
+import development.alberto.com.weatheralert.Models.Model.WeatherInfo;
 import development.alberto.com.weatheralert.R;
 
 /**

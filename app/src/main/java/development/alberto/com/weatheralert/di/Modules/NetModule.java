@@ -8,7 +8,6 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import development.alberto.com.weatheralert.Constants.Constant;
-import development.alberto.com.weatheralert.UI.MainActivity;
 import io.realm.Realm;
 import retrofit.RestAdapter;
 

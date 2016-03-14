@@ -1,7 +1,7 @@
 package development.alberto.com.weatheralert.Api;
 
 import development.alberto.com.weatheralert.Constants.Constant;
-import development.alberto.com.weatheralert.Model.WeatherInfo;
+import development.alberto.com.weatheralert.Models.Model.WeatherInfo;
 import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Query;
