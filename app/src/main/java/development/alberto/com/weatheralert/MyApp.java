@@ -20,5 +20,9 @@ public class MyApp extends Application {
                 .build();
     }
 
+    public NetComponent getmNetComponent(){
+        return mNetComponent;
+    }
+
 
 }

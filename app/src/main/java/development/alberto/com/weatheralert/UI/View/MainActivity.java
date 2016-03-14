@@ -8,13 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import development.alberto.com.weatheralert.Api.InterfaceDataSent;
 import development.alberto.com.weatheralert.Api.WeatherApi;
 import development.alberto.com.weatheralert.Constants.Constant;
+import development.alberto.com.weatheralert.Models.Model.Weather;
 import development.alberto.com.weatheralert.Models.Model.WeatherInfo;
+import development.alberto.com.weatheralert.MyApp;
 import development.alberto.com.weatheralert.R;
 import development.alberto.com.weatheralert.UI.Presenter.MainPresenter;
 import development.alberto.com.weatheralert.UI.Presenter.MainView;
@@ -28,8 +32,10 @@ import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity implements InterfaceDataSent, MainView{
 
-    private RestAdapter mRestAdapt;
-    private Realm realm;
+    //private RestAdapter mRestAdapt;
+    @Inject RestAdapter restAdapter;
+    //private Realm realm;
+    @Inject Realm realm;
     private RealmConfiguration realmConfiguration;
     @Bind(R.id.editText) EditText textEntered;
     private ProgressDialog progressDialog;
@@ -72,12 +78,12 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
 //            f.updateViews();
 //        }
 
-//        restAdapter of the model Weather
-        mRestAdapt = new RestAdapter.Builder()
-                .setEndpoint(Constant.BASE_URL)
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .build();
-        mApi = mRestAdapt.create(WeatherApi.class);
+//        restAdapter of the model Weather---Done with dagger 2 now...
+//        mRestAdapt = new RestAdapter.Builder()
+//                .setEndpoint(Constant.BASE_URL)
+//                .setLogLevel(RestAdapter.LogLevel.FULL)
+//                .build();
+//        mApi = mRestAdapt.create(WeatherApi.class);
         //progressDialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading information...");
@@ -95,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
 //    }
 
     private void getWeatherData(String cityName) { //get the data for the first time and when it has more data info
-        mApi.getWeatherInfo(cityName, new Callback<WeatherInfo>() {
+        getApi().getWeatherInfo(cityName, new Callback<WeatherInfo>() {
             @Override
             public void success(WeatherInfo weatherModel, Response response) {
                 progressDialog.dismiss();
@@ -114,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
         });
     }
 
-    @Override //send the data to the Fragment2
+    @Override //Send data to the fragment 2
     public void sendData(WeatherInfo weatherModel) {
         MyFragmentData fragment2= getFragment2();
         fragment2.infoReceived(weatherModel);
@@ -139,6 +145,12 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
     @Override
     public void showUserNameError(int error) {
        this.textEntered.setText(getString(error));
+    }
+
+    public WeatherApi getApi(){
+        ((MyApp) getApplicationContext()).getmNetComponent().inject(this); //we need to implement it to inject the object, although it works without it too
+        restAdapter = ((MyApp) getApplicationContext()).getmNetComponent().provideRetrofit();
+        return restAdapter.create(WeatherApi.class);
     }
 
 
