@@ -11,7 +11,7 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //mNetComponent = DaggerNetComponent
+//        mNetComponent = DaggerNetComponent
 //                .builder()
 //                .netModule(new NetModule())
 //                .build();

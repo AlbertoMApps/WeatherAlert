@@ -25,7 +25,9 @@ android {
     packagingOptions {
         exclude 'META-INF/license.txt'
         exclude 'META-INF/notice.txt'
-        exclude 'META-INF/services/javax.annotation.processing.Processor' // butterknife
+        exclude 'META-INF/services/javax.annotation.proce?ssing.Processor' // butterknife
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        pickFirst 'META-INF/services/javax.annotation.processing.Processor'
     }
 }
 
@@ -37,10 +39,14 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:cardview-v7:23.1.1'
     compile 'com.android.support:recyclerview-v7:23.1.1'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'io.realm:realm-android:0.84.1'
     compile 'com.google.dagger:dagger:2.0'
     provided 'com.google.dagger:dagger-compiler:2.0'
     //Needed for annotatins in java 1.6
     provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'io.realm:realm-android:0.84.1'
+    //Mockito
+    repositories { jcenter() }
+    dependencies { testCompile "org.mockito:mockito-core:1.+" }
+    androidTestCompile 'junit:junit:4.12'
 }

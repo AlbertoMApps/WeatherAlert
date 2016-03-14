@@ -6,6 +6,7 @@
     <string name="search">Search by city name:</string>
     <string name="textShow">Enter your city name:</string>
     <string name="add_data_button">Add data</string>
+    <string name="login_user_name_error">user_form_error</string>
     <string-array name="tabs">
         <item>INFORMATION DISPLAYED</item>
         <item>INFORMATION STORAGED</item>

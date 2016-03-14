@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,6 +26,8 @@ import development.alberto.com.weatheralert.Model.Weather;
 import development.alberto.com.weatheralert.Model.WeatherInfo;
 import development.alberto.com.weatheralert.R;
 import development.alberto.com.weatheralert.Tabs.SlidingTabsLayout;
+import development.alberto.com.weatheralert.UI.Presenter.MainPresenter;
+import development.alberto.com.weatheralert.UI.Presenter.MainView;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.exceptions.RealmMigrationNeededException;
@@ -34,7 +37,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class MainActivity extends AppCompatActivity implements InterfaceDataSent{
+public class MainActivity extends AppCompatActivity implements InterfaceDataSent, MainView{
 
     private RestAdapter mRestAdapt;
     private Realm realm;
@@ -49,19 +52,15 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
     private WeatherInfo weatherInfo, weatherInfo2;
    // private MyPagerAdapter myPagerAdapter;
     private final String dataSaved = "dataSavedState";
+    private MainPresenter mainPresenter;
 
     @OnClick(R.id.btnSearch)
     void btnSearch() { // in this case we send the information to the fragments with a setter
             dataEntered = textEntered.getText().toString().trim();
             progressDialog.show();
             if (!dataEntered.isEmpty()) {
-                //if (myPagerAdapter == null) {
                     getWeatherData(dataEntered);
                     btnAddData.setVisibility(View.VISIBLE); //set the button of the fragment1 visible..
-               // } else {
-                    //updateWeather(dataEntered);
-               // }
-                //Toast.makeText(getApplicationContext(), dataEntered, Toast.LENGTH_SHORT).show();
             } else {
                 textEntered.setError("Type a city name...");
             }
@@ -73,27 +72,7 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        //Realm configuration...
-//        realmConfiguration = new RealmConfiguration.Builder(this).build();
-//
-//        try {
-//            //Use of Realm realm for Android
-//            realm = Realm.getInstance(this);
-//            updateData(realm);
-//
-//        } catch (RealmMigrationNeededException e) {
-//            try {
-//                Realm.deleteRealm(realmConfiguration);
-//                //Realm file has been deleted.
-//                Realm.getInstance(realmConfiguration);
-//            } catch (Exception ex) {
-//                throw ex;
-//                //No Realm file to remove.
-//            }
-//
-//        }
-
+        mainPresenter = new MainPresenter(this);
 //        if(savedInstanceState!=null){  //saved state
 //            myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
 //            mPager.setAdapter(myPagerAdapter);
@@ -104,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
 //            f.updateViews();
 //        }
 
-//        Retrofit data example
 //        restAdapter of the model Weather
         mRestAdapt = new RestAdapter.Builder()
                 .setEndpoint(Constant.BASE_URL)
@@ -118,25 +96,6 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
     }
 
     //Extra methods-------------------------------------------------------------------------------------
-
- /**   private void updateWeather(String cityName) { ///update the data infor in case it is already displaying in the tabs before and new data is entered by the user...
-        mApi.getWeatherInfo(cityName, new Callback<WeatherInfo>() { //recreate the fragments
-            @Override
-            public void success(WeatherInfo weatherInfo, Response response) {
-                progressDialog.dismiss();
-                weatherInfo2 = weatherInfo;
-                MyFragment f = ((MyFragment) myPagerAdapter.getItem(0));
-                f.setWeatherModel(weatherInfo);
-                f.updateViews();
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                progressDialog.dismiss();
-            }
-        });
-    }
-**/
 //    @Override
 //    protected void onSaveInstanceState(Bundle outState) { //save the state if the data model is already there
 //        super.onSaveInstanceState(outState);
@@ -152,14 +111,9 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
             public void success(WeatherInfo weatherModel, Response response) {
                 progressDialog.dismiss();
                 Log.i("API", "success: COOL");
-//                myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
-//                mPager.setAdapter(myPagerAdapter);
-//                mTabs.setViewPager(mPager);
-               // MyFragment f = ((MyFragment) myPagerAdapter.getItem(0));
                 MyFragment fragment1 = (MyFragment) getFragment1();
                 fragment1.setWeatherModel(weatherModel);
                 fragment1.updateViews();
-                // windSpeed.setText("Weather speed: " + weatherModel.getWind().getSpeed());//test retrofit
             }
 
             @Override
@@ -188,52 +142,14 @@ public class MainActivity extends AppCompatActivity implements InterfaceDataSent
         return fragment2;
     }
 
-//    private void updateData(Realm realm){
-//        MyFragmentData fd = ((MyFragmentData) myPagerAdapter.getItem(1));
-//        fd.setRealm(realm);
-//        fd.setRealmConfiguration(realmConfiguration);
-//    }
+    @Override
+    public String getUserName() {
+        return dataEntered;
+    }
+    @Override
+    public void showUserNameError(int error) {
+       this.textEntered.setText(getString(error));
+    }
 
-    ///---------------------------------------------------------------------------------------------------
-
-    //inner class for the pagerAdapter...
- /**   public class MyPagerAdapter extends FragmentPagerAdapter {
-        Resources res = getResources();
-        String[] tabs = res.getStringArray(R.array.tabs);
-        MyFragment mFragment;
-        MyFragmentData mFragmentData;
-
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-            //fm.beginTransaction().addToBackStack("null");
-            mFragment = new MyFragment();
-            mFragmentData = new MyFragmentData();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return tabs[position];
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-//            MyFragment myFragment = MyFragment.getInstance(position);
-//            return myFragment;
-            switch (position) {
-                case 0:
-                    return mFragment;
-                case 1:
-                    return mFragmentData;
-                default:
-                    return null;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return tabs.length;
-        }
-
-    }**/
 
 }//End of class
